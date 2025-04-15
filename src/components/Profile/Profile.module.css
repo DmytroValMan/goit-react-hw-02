@@ -1,0 +1,70 @@
+.socialsProfileCard {
+  border: solid 3px black;
+  border-radius: 8px;
+  padding-top: 12px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.profileMain {
+}
+
+.profileImg {
+  width: 40%;
+  height: 40%;
+  display: block;
+  border-radius: 50%;
+  background-color: rgb(71, 70, 70);
+  margin: 0 auto;
+}
+
+.profileName {
+  font-size: 36px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.profileTag,
+.profileAddress {
+  color: gray;
+  font-size: 24px;
+}
+
+.profileTag {
+  margin-bottom: 8px;
+}
+
+.profileAddress {
+  margin-bottom: 12px;
+}
+
+.socials {
+  display: flex;
+  justify-content: space-around;
+
+  background-color: lightgray;
+  border-top: solid 3px gray;
+}
+
+.socialsItem {
+  display: block;
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.socialsItem:not(:last-child) {
+  border-right: solid 3px gray;
+}
+
+.socialsHeader {
+  display: block;
+  font-size: 20px;
+}
+
+.socialsValue {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+}

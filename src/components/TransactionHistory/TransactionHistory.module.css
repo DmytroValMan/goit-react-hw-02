@@ -1,0 +1,45 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table,
+.headData,
+.bodyData {
+  border: solid 1px black;
+}
+
+.headData,
+.bodyData {
+  padding: 4px;
+  width: calc(100% / 3);
+}
+
+.headRow {
+  background-color: rgb(25, 25, 25);
+  color: white;
+}
+
+.headData {
+}
+
+.body {
+}
+
+.bodyRow {
+}
+
+.bodyData {
+  text-align: center;
+  font-size: 18px;
+}
+
+.bodyData:nth-child(1) {
+  padding-left: 64px;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.bodyRow:nth-child(even) {
+  background-color: lightgray;
+}

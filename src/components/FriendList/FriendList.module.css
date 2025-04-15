@@ -1,0 +1,35 @@
+.gallery {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.item {
+  padding: 12px 8px;
+  width: calc((100% - 32px) / 5);
+  text-align: center;
+  border: solid 2px black;
+  border-radius: 4px;
+}
+
+.img {
+  margin: 0 auto;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.name {
+  font-size: 28px;
+}
+
+.status {
+}
+
+.isOnline {
+  color: green;
+}
+
+.isOffline {
+  color: red;
+}
