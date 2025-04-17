@@ -1,24 +1,70 @@
-import userData from "../userData.json";
-import Profile from "./Profile/Profile";
+import { useState, useEffect } from "react";
 
-import FriendList from "./FriendList/FriendList";
-import friends from "../friends.json";
-
-import transactions from "../transactions.json";
-import TransactionHistory from "./TransactionHistory/TransactionHistory";
+import Description from "./Description/Description";
+import Options from "./Options/Options";
+import Feedback from "./Feedback/Feedback";
+import Notification from "./Notification/Notification";
 
 const App = () => {
+  const [clicks, setClicks] = useState(() => {
+    const clicksJson = localStorage.getItem("clicksState");
+
+    if (clicksJson !== null) {
+      return JSON.parse(clicksJson);
+    }
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
+  });
+
+  useEffect(() => {
+    localStorage.setItem("clicksState", JSON.stringify(clicks));
+  }, [clicks]);
+
+  const arrValues = Object.values(clicks);
+  const totalFeedback = arrValues.reduce((total, value) => total + value, 0);
+
+  const updateFeedback = (feedbackType) => {
+    setClicks({
+      ...clicks,
+      [feedbackType]: clicks[feedbackType] + 1,
+    });
+  };
+
+  const resetFeedback = () => {
+    const arrKeyNames = Object.keys(clicks);
+    let resetClicks = {};
+    arrKeyNames.forEach((name) => {
+      resetClicks[name] = 0;
+    });
+    setClicks(resetClicks);
+  };
+
+  const positivePercent = () => {
+    const positiveFeedback = totalFeedback - clicks.bad;
+    return `${Math.round((positiveFeedback / totalFeedback) * 100)}%`;
+  };
+
   return (
     <>
-      <Profile
-        name={userData.username}
-        tag={userData.tag}
-        location={userData.location}
-        image={userData.avatar}
-        stats={userData.stats}
+      <Description />
+      <Options
+        names={clicks}
+        updateFeedback={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
       />
-      <FriendList friends={friends} />
-      <TransactionHistory items={transactions} />
+      {totalFeedback > 0 ? (
+        <Feedback
+          names={clicks}
+          totalFeedback={totalFeedback}
+          positivePercent={positivePercent}
+        />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 };
